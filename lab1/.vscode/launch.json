@@ -1,0 +1,40 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/debugger_test.exe",  // Make sure this is the correct path
+            "args": [],
+            "stopAtEntry": true,  // You can set this to true to stop at entry point and confirm the debugger attaches properly
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,  // Set to true if you prefer using an external console
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Skip system libraries and headers",
+                    "text": "set substitute-path /usr/include /path/to/your/local/include",  // Skip system include paths
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Disable source requests for system libraries",
+                    "text": "set solib-search-path /path/to/your/libs",  // Ensure GDB doesn't try to load system libraries
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "/usr/bin/gdb"  // Ensure the correct path to GDB on your system
+        }
+    ]
+}
